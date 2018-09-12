@@ -20,6 +20,10 @@ Wed Sep 12 17:23:32 UTC 2018
 
 ### Scripted mode
 
+The `-q` argument allows you to run the utility in quiet mode.
+
+You can then pass your dates to stdin through a pipe and get the result to stdout.
+
 ```
 $ date > .times
 $ something_long
@@ -29,7 +33,7 @@ $ deltatime -q < .times
 
 ## Tips
 
-If you omit a date, the current date and time are used.
+If you omit a date, the current date and time are used. If you pass a pipe to stdin, use a blank line.
 
 The absolute value will be used.
 
