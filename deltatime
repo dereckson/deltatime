@@ -15,18 +15,42 @@ proc s {count} {
     }
 }
 
+proc is_verbose {} {
+    if {$::argc != 1} {
+        return 1
+    }
+
+    set arg [lindex $::argv 0]
+
+    if {$arg != "-q" && $arg != "--quiet"} {
+        return 1
+    }
+
+    return 0
+}
+
 #
 # Procedural part
 #
 
-puts "Start date:"
+set verbose [is_verbose]
+
+if {$verbose} {
+    puts "Start date:"
+}
 set start [gets stdin]
 
-puts "End date:"
+if {$verbose} {
+    puts "End date:"
+}
 set end [gets stdin]
 
 if [catch {set delta [deltatime $end $start]} err] {
     puts stderr $err
     exit 2
 }
-puts "\n$delta second[s $delta]"
+
+if {$verbose} {
+    puts ""
+}
+puts "$delta second[s $delta]"
