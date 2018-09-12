@@ -25,5 +25,8 @@ set start [gets stdin]
 puts "End date:"
 set end [gets stdin]
 
-set delta [deltatime $end $start]
+if [catch {set delta [deltatime $end $start]} err] {
+    puts $err
+    exit 2
+}
 puts "\n$delta second[s $delta]"
