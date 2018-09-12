@@ -1,0 +1,29 @@
+#!/usr/bin/env tclsh8.6
+
+#
+# Helper methods
+#
+
+# Computes the delta between two dates in seconds
+proc deltatime {d1 d2} {
+    expr abs([clock scan $d1] - [clock scan $d2])
+}
+
+proc s {count} {
+    if {$count >= 2 || $count <= -2} {
+        return "s"
+    }
+}
+
+#
+# Procedural part
+#
+
+puts "Start date:"
+set start [gets stdin]
+
+puts "End date:"
+set end [gets stdin]
+
+set delta [deltatime $end $start]
+puts "\n$delta second[s $delta]"
